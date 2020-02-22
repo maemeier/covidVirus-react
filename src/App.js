@@ -1,51 +1,45 @@
 import React from "react";
 import axios from "axios";
+import Total from "./Total";
 import data from "./data.json";
 
 import "./styles.css";
 
 const dataList = data.results;
-const totalDead = data.results.deadCount;
-
 class App extends React.Component {
   state = {
     results: []
   };
 
-  componentDidMount() {
-    axios.get(`https://lab.isaaclin.cn/nCoV/api/area`).then(res => {
-      console.log(res);
-      this.setState({ results: res.data });
-    });
-  }
   render() {
     return (
-      <div className>
-        {dataList.map(c => (
-          <div>
-            <h4 className="description">
-              Location: {c.provinceEnglishName}, {c.countryEnglishName}
-            </h4>
-            <p className="meta">
-              Current confirm count: {c.currentConfirmedCount}
-            </p>
-            <p className="description">
-              {" "}
-              Confrim count:
-              {c.confirmedCount}
-            </p>
-            <p>
-              Cured count:
-              {c.curedCount}
-            </p>
-            <p>
-              Dead count:
-              {c.deadCount}
-            </p>
-            <hr />
-          </div>
-        ))}
-      </div>
+      <>
+        <h1> COVID-19 (Corona virus)</h1>
+        <table class="ui celled table">
+          <thead>
+            <tr>
+              <th>Country and City</th>
+              <th>Current confirm count</th>
+              <th>Confirmed count</th>
+              <th>Cured </th>
+              <th>Dead</th>
+            </tr>
+          </thead>
+          <tbody>
+            {dataList.map(c => (
+              <tr>
+                <td>
+                  {c.provinceEnglishName}, {c.countryEnglishName}
+                </td>
+                <td>{c.currentConfirmedCount}</td>
+                <td>{c.confirmedCount}</td>
+                <td className="positive">{c.curedCount}</td>
+                <td className="negative">{c.deadCount}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
     );
   }
 }

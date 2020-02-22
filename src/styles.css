@@ -3,6 +3,26 @@
   text-align: center;
 }
 
-.ui.cards {
-  margin: 0 auto;
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.card {
+  background: #3c3b3f;
+  border-radius: 4px;
+  margin: 10px 10px 10px 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  height: 200px;
+}
+
+p {
+  margin: 0;
+  padding-left: 10px;
+  color: #f6f8f7;
+}
+
+h1 {
+  padding-top: 40px;
+  padding-bottom: 20px;
 }
